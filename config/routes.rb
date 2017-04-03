@@ -1,13 +1,30 @@
 Rails.application.routes.draw do
+  resources :usergames
   resources :games
   resources :userplayers
   resources :players
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+#  devise_for :users, controllers: { registrations: 'users/registrations' }
+  resources :users do
+    member do
+      post 'create_predictions';
+       get 'pick_team';
+       get 'predict_games';
+        post 'lock_players';
+        post 'lock_games'
+    end
+  end
+  # devise_scope :user do
+   # get 'sign_in', to: 'devise/sessions#new'
+ # end
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  
+ # get '/pick_team/:id' => 'users#pick_team'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -42,6 +42,7 @@ class GamesController < ApplicationController
   def update
     respond_to do |format|
       if @game.update(game_params)
+        fill_gap(@game)
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
@@ -71,4 +72,11 @@ class GamesController < ApplicationController
     def game_params
       params.require(:game).permit(:game_date, :ref, :home_team, :away_team, :location, :home_score, :away_score, :gap)
     end
+    
+    def fill_gap(game)
+      if (!game.home_score.blank? && !game.away_score.blank? )
+        game.update_attribute(:gap, (game.home_score-game.away_score).abs)
+           else
+          end 
+        end
 end

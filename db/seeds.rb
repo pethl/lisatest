@@ -5,6 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }', position: ' { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel'', position: ' city: cities.first)
+User.destroy_all
+Userplayer.destroy_all
+Usergame.destroy_all
 Player.destroy_all
 Player.create(name:'Alasdair Dickinson', position: 'Loosehead Prop')
 Player.create(name:'Cian Healy', position: 'Loosehead Prop')
