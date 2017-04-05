@@ -60,6 +60,11 @@ class PlayersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def select
+    Player.where(id: params[:player_ids]).update_all(selected: true)
+    redirect_to players_url
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +74,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :position)
+      params.require(:player).permit(:name, :position, :selected)
     end
 end

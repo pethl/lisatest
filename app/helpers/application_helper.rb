@@ -52,7 +52,7 @@ module ApplicationHelper
        if game.home_score >game.away_score
          return "Home"
         elsif game.home_score <game.away_score
-          return "Away"
+          return "Lions"
         else
           return "Draw"
         end
@@ -60,6 +60,14 @@ module ApplicationHelper
        return 
      end  
    end
+  
+   def who_did_you_predict_to_win(game_id, user_id)
+     if Usergame.where(game_id: game_id, user_id: user_id).first.home_win == true 
+       return "Home"
+      else
+        return "Lions"
+    end
+  end 
    
   def point_for_outcome(game_id, home_win)
     game = Game.find(game_id)
@@ -67,7 +75,7 @@ module ApplicationHelper
        winner = who_won(game_id)
        if ((home_win == true) && (winner== "Home"))
          return 1
-       elsif   ((home_win == false) && (winner== "Away"))
+       elsif   ((home_win == false) && (winner== "Lions"))
          return 1
        else
          return 0

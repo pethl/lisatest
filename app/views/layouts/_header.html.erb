@@ -14,6 +14,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
+       <li><a href="/scoreboard">Scoreboard</a></li>
           <% if user_signed_in? %>
            <li><%= link_to "My Scores & Predictions", user_path(current_user) %> </li> 
            <% end %> 
@@ -23,6 +24,8 @@
             <li><a href="/players">Players</a></li>
              <li role="separator" class="divider"></li>
             <li><a href="/games">Games</a></li>
+            <li role="separator" class="divider"></li>
+           <li><a href="/users">Users</a></li>
          </ul>
         </li>
       </ul>

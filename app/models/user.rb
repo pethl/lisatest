@@ -12,5 +12,7 @@ class User < ActiveRecord::Base
  accepts_nested_attributes_for :userplayers, :allow_destroy => true
  accepts_nested_attributes_for :usergames, :allow_destroy => true
  
-  validates :name, presence: true, length: { maximum: 40 }   
+  validates :name, presence: true, length: { maximum: 40 }
+  
+   default_scope { order(name: :asc) }   
 end

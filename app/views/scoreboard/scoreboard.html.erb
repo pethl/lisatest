@@ -1,0 +1,113 @@
+<h3>Scoreboard Lions 2017</h3>
+
+<div class="row">
+  <div class="col-md-12">       
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+     <th>Points For</th>
+     <% @users.each do |user| %>
+    <th><center><%= user.name %></th>
+     <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+  <td><b>Squad Points</b></td>
+  <% @users.each do |user| %>
+    <td><center><%= points_for_correct_squad_player(user.id) %></td>
+  <% end %>
+  </tr>
+    <% @games.each do |game| %>
+  <tr>
+       <td><%= game.game_date.strftime('%a, %d %b') %>: <%= game.home_team%></td>
+       <% @users.each do |user| %>
+        <td><center><b><%= total_points_per_game(game.id, user.id) %></b></td>
+        <% end %>
+    <% end %>
+  </tr> 
+  <tr>
+  <td><b>Total Game Points </b></td>
+  <% @users.each do |user| %>
+   <td><b><center><%= points_for_all_games(user.id) %></center></b></td>
+  <% end %> 
+  </tr>  
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+<h4>Player Breakdown</h4>
+<div class="row">
+  <div class="col-md-12">       
+<table class="table table-bordered">
+  <thead>
+    <tr>
+     <th>Player Name</th>
+     <% @users.each do |user| %>
+    <th><center><%= user.name %></th>
+     <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% @chosen_players.each do |player| %>
+    <tr>
+    <td><%= player.name %></td>
+      <% @users.each do |user| %>
+       <% if cell(user.id,player.id)==true %><td class="success"><center>
+         <span class="glyphicon glyphicon-user" aria-hidden="true"></span></td><% else %><td></td><% end %>
+      <% end %> 
+    </tr>
+    <% end %>
+    <tr>
+      <td class="active"><b>Points scored</td>
+       <% @users.each do |user| %>
+      <td class="active"><center><b><%= points_for_correct_squad_player(user.id) %></b></td>
+       <% end %>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+<h4>Player Breakdown</h4>
+<div class="row">
+  <div class="col-md-12">       
+<table class="table table-bordered">
+  <thead>
+    <tr>
+     <th>Game</th>
+     <th><center>Winner</center></th>
+     <% @users.each do |user| %>
+    <th><center><%= user.name %></center></th>
+     <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% @games.each do |game| %>
+    <tr>
+     <td><%= game.game_date.strftime('%a, %d %b') %>: <%= game.home_team%></td>
+     <% if (who_won(game.id))== "Home" %>
+       <td class="success"><center><%= who_won(game.id) %></center></td>
+       <% elsif who_won(game.id)== "Lions"%>
+        <td class="info"><center><%= who_won(game.id) %></center></td>
+        <% else %>
+         <td class="active"><center><%= who_won(game.id) %></center></td>
+         <% end %>
+   <% @users.each do |user| %>
+     <% if who_did_you_predict_to_win(game.id, user.id) == "Home" %>
+  <td class="success"><center><%= who_did_you_predict_to_win(game.id, user.id) %></center></td>
+    <% else %>
+     <td class="info"><center><%= who_did_you_predict_to_win(game.id, user.id) %></center></td>
+   <% end %>   <% end %>
+    </tr>
+    <% end %> 
+  </tbody>
+</table>
+  </div>
+</div>
+
+
+

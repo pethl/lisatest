@@ -2,9 +2,12 @@ Rails.application.routes.draw do
   resources :usergames
   resources :games
   resources :userplayers
-  resources :players
+  resources :players do
+    collection do
+      put :select
+    end
+  end
   devise_for :users, controllers: { sessions: 'users/sessions' }
-#  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users do
     member do
       post 'create_predictions';
@@ -23,6 +26,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'home#index'
+  get 'scoreboard', to: 'scoreboard#scoreboard'
   
  # get '/pick_team/:id' => 'users#pick_team'
 
