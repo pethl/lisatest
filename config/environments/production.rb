@@ -77,18 +77,22 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
   
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address:        ENV['MAILGUN_SMTP_PORT'],
-    port:           ENV['MAILGUN_SMTP_SERVER'],
-    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
-    password:       ENV['MAILGUN_SMTP_PASSWORD'],
-    domain:         'predict-the-lions.herokuapp.com',
-    authentication: :plain
-  }
-  config.action_mailer.default_url_options = {
-    :host => 'predict-the-lions.herokuapp.com'
-  }
+ # config.action_mailer.delivery_method = :smtp
+  ActionMailer::Base.register_interceptor(SendGrid::MailInterceptor)
+
+  if ENV['SENDGRID_USERNAME'] && ENV['SENDGRID_PASSWORD']
+    ActionMailer::Base.smtp_settings = {
+      :address        => 'smtp.sendgrid.net',
+      :port           => '465',
+      :authentication => :plain,
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
+      :domain         => 'heroku.com',
+      :enable_starttls_auto => true,
+      :ssl => true
+    }
+    ActionMailer::Base.delivery_method = :smtp
+  end
  # config.assets.initialize_on_precompile = false
   
 end
