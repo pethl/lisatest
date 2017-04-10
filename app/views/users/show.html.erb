@@ -13,47 +13,37 @@
  <% else %>
  
  <ul class="nav nav-tabs">
-   <li role="presentation" class="active"><%= link_to "Scoring", user_path(@user) %></li>
+   <li role="presentation" class="active"><%= link_to "Progress", user_path(@user) %></li>
    <li role="presentation"><%= link_to "Pick Squad", pick_team_user_path(@user) %></li>
    <li role="presentation"><%= link_to "Predict Games", predict_games_user_path(@user) %></li>
  </ul>
  <br>
- <h5>You have selected <%= @selected.count %> out of 37 players<br>
- You are <%= game_prediction_progress(@user) %>% through creating game predictions</h5>
+ <h5>
+ <% if @user.lock_players == false %> 
+    <% if @selected.count == 37 %> 
+   SQUAD: You have selected <%= @selected.count %> out of 37 players, now please <b>LOCK your SQUAD.</b>
+    <% else %>
+     SQUAD: You have selected <%= @selected.count %> out of 37 players
+     <% end %>
+ <% else %>
+   SQUAD: Congratulations, your squad is <font color=green>LOCKED</font> 
+<% end %>
+</h5>
+
+  <h5>
+  <% if @user.lock_games == false %> 
+     <% if @selected.count == 37 %> 
+   GAMES: You are <%= game_prediction_progress(@user) %>% through creating game predictions, now please <b>LOCK your GAMES.
+   <% else %>
+    GAMES: You are <%= game_prediction_progress(@user) %>% through creating game predictions
+    <% end %>
+  <% else %>
+    GAMES: Congratulations, your games are <font color=green>LOCKED</font> 
+ <% end %>
+ </h5>
  
  
- <table class="table table-condensed">
- <thead>
-   <th><small>Date</th>
-   <th><small>Opposition</th>
-   
-   <th><small>Predicted Gap</th>
-   <th><small>Actual Gap</th>
-   <th><small>Points for Margin</th>
-   
-   <th><small>Predicted Winner</th>
-   <th><small>Actual Winner</th>
-   <th><small>Points for Winner</th>
- </thead>
- <tbody>
- <% @user.usergames.each do |usergame| %>
-
-   <tr>
-     <td><%= Game.find(usergame.game_id).game_date %></td>
-     <td><%= Game.find(usergame.game_id).home_team %></td>
-     
-     <td><%= reverse_points_margin(usergame.winning_margin)%></td>
-     <td><%= Game.find(usergame.game_id).gap %></td>
-     <td><% if points_margin(usergame.game_id)==usergame.winning_margin %>1<% elsif points_margin(usergame.game_id)== "MISSING" %> <% else %>0<% end %></td>
-       
-     <td><% if usergame.home_win==true %>Home<% elsif usergame.home_win==false %>Lions<% else %>Not declared<% end %></td>
-     <td><%= who_won(usergame.game_id)%></td>   
-     <td><%= point_for_outcome(usergame.game_id,usergame.home_win) %></td>
-   </tr>
-
- <% end %>  
- </tbody>
- </table>
+ 
 
  
 <% end %>

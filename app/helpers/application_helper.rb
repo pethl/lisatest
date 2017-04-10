@@ -62,11 +62,14 @@ module ApplicationHelper
    end
   
    def who_did_you_predict_to_win(game_id, user_id)
+     if User.find(user_id).lock_games==true
      if Usergame.where(game_id: game_id, user_id: user_id).first.home_win == true 
        return "Home"
       else
         return "Lions"
     end
+  
+end
   end 
    
   def point_for_outcome(game_id, home_win)
@@ -91,4 +94,6 @@ module ApplicationHelper
       return false
     end
   end 
+  
+ 
 end

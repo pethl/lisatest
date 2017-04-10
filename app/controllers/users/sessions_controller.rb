@@ -4,20 +4,20 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   def new
     super
-   Rails.logger.debug("lets do this new: #{self.inspect}")
+  # Rails.logger.debug("lets do this new: #{self.inspect}")
    end
 
   # POST /resource/sign_in
    def create
      super
-     Rails.logger.debug("lets do this create: #{self.inspect}")
+  #   Rails.logger.debug("lets do this create: #{self.inspect}")
      
    end
 
   # DELETE /resource/sign_out
    def destroy
      super
-      Rails.logger.debug("lets do this destroy: #{self.inspect}")
+   #   Rails.logger.debug("lets do this destroy: #{self.inspect}")
    end
 
   # protected

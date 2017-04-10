@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <li role="presentation"><%= link_to "Scoring", user_path(@user) %></li>
+  <li role="presentation"><%= link_to "Progress", user_path(@user) %></li>
   <li role="presentation"><%= link_to "Pick Squad", pick_team_user_path(@user) %></li>
   <li role="presentation" class="active"><%= link_to "Predict Games", predict_games_user_path(@user) %></li>
 </ul>
@@ -8,6 +8,14 @@
  <% if @user.usergames.any? %>
 <div class="row">
 <div class="col-md-9">
+<h5>Predict Game Results</h5> 
+<small>
+<li>Pick the winning team by selecting "Home" or "Lions" for each game.</li>
+<li>Pick the margin of victory by selecting one of the points margins for each game.</li>
+<li>Click SAVE PREDICTIONS at any time to save your progress.</li>
+<li>When all 10 Done ticks are shown, LOCK button will appear.</li>
+<li><b>Only locked games will be considered for scoring.</b></li></small>
+<br>
   <table class="table table-condensed">
   <thead>
   <tr>
@@ -58,6 +66,7 @@
   
   
   <div class="col-md-3">
+  <br>
    <div class="well">
   
   <center>

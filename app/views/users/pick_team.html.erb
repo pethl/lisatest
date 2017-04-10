@@ -1,5 +1,5 @@
 <ul class="nav nav-tabs">
-  <li role="presentation"><%= link_to "Scoring", user_path(@user) %></li>
+  <li role="presentation"><%= link_to "Progress", user_path(@user) %></li>
   <li role="presentation" class="active"><%= link_to "Pick Squad", pick_team_user_path(@user) %></li>
   <li role="presentation"><%= link_to "Predict Games", predict_games_user_path(@user) %></li>
 </ul>
@@ -13,9 +13,10 @@
  <li>Multiple players can be added at the same time.</li>
  <li>Multiple players can be removed at the same time.</li>
  <li>When you have choosen 37 players you will be able to lock in your choices.</li>
- <li>Only locked teams will be considered for scoring.</li></small>
+ <li><b>Only locked teams will be considered for scoring.</b></li></small>
  </div>
  <div class="col-md-4">
+ <br>
  <div class="well">
  <h4>Squad Count:
  <%= @selected.count %> of 37</h4>
