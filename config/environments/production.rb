@@ -96,7 +96,7 @@ Rails.application.configure do
 #      :ssl => true
 #    }
     ActionMailer::Base.delivery_method = :smtp
-  end
+#  end
  # config.assets.initialize_on_precompile = false
   
 end
