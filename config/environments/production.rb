@@ -76,4 +76,18 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:        ENV['SPARKPOST_SMTP_HOST'],
+    port:           ENV['SPARKPOST_SMTP_PORT'],
+    user_name:      ENV['SPARKPOST_SMTP_USERNAME'],
+    password:       ENV['SPARKPOST_SMTP_PASSWORD'],
+    domain:         'heroku.com',
+    authentication: :plain
+  }
+  config.action_mailer.default_url_options = {
+    :host => 'predict-the-lions.herokuapp.com'
+  }
+  
 end
