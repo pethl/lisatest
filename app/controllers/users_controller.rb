@@ -25,12 +25,12 @@ class UsersController < ApplicationController
  
  def lock_players
    @user.update_attribute(:lock_players, TRUE)
-    redirect_to pick_team_user_path(@user), notice: 'Squad selection is now locked.'
+    redirect_to pick_team_user_path(@user), notice: 'Squad selection is now locked, please go to Predict Games to continue.'
  end
  
  def lock_games
    @user.update_attribute(:lock_games, TRUE)
-   redirect_to predict_games_user_path(@user), notice: 'Game predictions are now locked.'
+   redirect_to predict_games_user_path(@user), notice: 'Game predictions are now locked, follow your progress via the Scoreboard.'
  end
  
   # GET /users

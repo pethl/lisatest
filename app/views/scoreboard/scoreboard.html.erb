@@ -19,7 +19,7 @@
        <% if who_is_the_leader==total_points_for_competition(user.id) %>
     <th class="success"><center><small>1st Place</small><br><%= user.name %></th>
      <% else %>
-      <th><center><%= user.id %><%= user.name %></th>
+      <th><center><%= user.name %></th>
      <% end %>   <% end %>
     </tr>
   </thead>

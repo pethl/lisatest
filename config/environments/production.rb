@@ -83,7 +83,7 @@ Rails.application.configure do
     port:           ENV['SPARKPOST_SMTP_PORT'],
     user_name:      ENV['SPARKPOST_SMTP_USERNAME'],
     password:       ENV['SPARKPOST_SMTP_PASSWORD'],
-    domain:         'heroku.com',
+    domain:         'herokuapp.com',
     authentication: :plain
   }
   config.action_mailer.default_url_options = {

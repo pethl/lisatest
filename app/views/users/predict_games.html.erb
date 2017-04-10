@@ -98,7 +98,7 @@
 <% @user.usergames.each do |usergame| %>
 
   <tr>
-    <td><%= Game.find(usergame.game_id).game_date %></td>
+    <td><%= Game.find(usergame.game_id).game_date.strftime('%e %B') %></td>
     <td><%= Game.find(usergame.game_id).home_team %></td>
     
     <td><%= reverse_points_margin(usergame.winning_margin)%></td>
