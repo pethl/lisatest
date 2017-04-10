@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'devise', '4.1.1'
 gem 'bootstrap-sass'
-gem 'sendgrid-rails', '~> 2.0'
+#gem 'sendgrid-rails', '~> 2.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
