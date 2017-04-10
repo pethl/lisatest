@@ -79,15 +79,16 @@ Rails.application.configure do
   
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address:        ENV['SPARKPOST_SMTP_HOST'],
-    port:           ENV['SPARKPOST_SMTP_PORT'],
-    user_name:      ENV['SPARKPOST_SMTP_USERNAME'],
-    password:       ENV['SPARKPOST_SMTP_PASSWORD'],
-    domain:         'herokuapp.com',
+    address:        ENV['MAILGUN_SMTP_PORT'],
+    port:           ENV['MAILGUN_SMTP_SERVER'],
+    user_name:      ENV['MAILGUN_SMTP_LOGIN'],
+    password:       ENV['MAILGUN_SMTP_PASSWORD'],
+    domain:         'predict-the-lions.herokuapp.com',
     authentication: :plain
   }
   config.action_mailer.default_url_options = {
     :host => 'predict-the-lions.herokuapp.com'
   }
+ # config.assets.initialize_on_precompile = false
   
 end
